@@ -1,0 +1,319 @@
+Here is an obfuscated version of the Lua script. This will make the script harder to read and understand.
+
+```lua
+local a = false;
+local b
+
+local c = steam.GetFriends()
+local d
+local e
+
+local f
+local g
+
+local h = false;
+local i = 0;
+local j = 200
+local k = false
+
+local l = 2000;
+local m = true
+local n = true
+local o = false
+local p = true
+local q = -1
+
+function r(s, t, u, v) 
+    return math.sqrt((u - s) ^ 2 + (v - t) ^ 2)
+end
+
+function w(x, y)
+    for _, z in pairs(x) do
+        if z == y then
+            return true;
+        end
+    end
+    return false;
+end
+
+local function A()
+
+    local B = entities.GetLocalPlayer()
+    local C = entities.FindByClass("CObjectSentrygun")
+
+    if (B == nil or not B:IsAlive()) then
+        return;
+    end
+
+    local D = 0
+
+    for E, F in pairs(C) do
+
+        local G = B:GetAbsOrigin();
+        local H = G.x
+        local I = G.y
+
+        local J = F:GetAbsOrigin();
+        local K = J.x
+        local L = J.y
+
+
+        if F:GetTeamNumber() == B:GetTeamNumber() then
+            -- do nothing
+        else
+            D = D + 1
+        end    
+        if D > 0 and r(H, I, K, L) < l then
+            k = true
+            i = 0;
+        else
+           k = false
+        end   
+        if D == 0 then
+            k = false    
+        end
+    end
+
+    if D == 0 then
+        k = false    
+    end
+end
+
+local function M()
+
+    local N = entities.GetLocalPlayer()
+    local O = entities.FindByClass("CTFPlayer")
+
+    if N == nil then
+        return;
+    end
+
+    local P = N:GetAbsOrigin();
+    local Q = P.x
+    local R = P.y
+
+    for S, T in pairs(O) do
+
+        e = client.GetPlayerInfo(T:GetIndex())
+        d = party.GetMembers()
+
+        if not T:IsAlive() then
+            goto U
+        end
+
+        if T:IsDormant() then
+            goto U
+        end
+
+        if T == N then
+            goto U
+        end
+        if T:GetTeamNumber() == N:GetTeamNumber() then
+            goto U
+        end
+
+        if w(c, e.SteamID) or w(d, e.SteamID) then 
+            goto U
+        end
+
+        if playerlist.GetPriority(T) == q then
+            goto U
+        end
+
+        local V = T:GetAbsOrigin()
+        local W = V.x
+        local X = V.y
+        local Y = N:GetEntityForLoadoutSlot(0)
+        local Z = Y:GetWeaponID()
+
+        Q = P.x
+        R = P.y
+
+        if a == false then
+            print(T:GetName())
+            print(a)
+            print("\n\n\n\n\n\n\n\n\n\n\n")
+
+            if r(Q, R, W, X) < l then
+                if n == true then
+                    if T:GetHealth() > 150 then
+                        gui.SetValue("sniper: auto zoom", 1);
+                        gui.SetValue("sniper: zoomed only", 1);  
+                        a = true;  
+                    elseif T:InCond(TFCond_Zoomed) and o then
+                        gui.SetValue("sniper: auto zoom", 1);
+                        gui.SetValue("sniper: zoomed only", 1);  
+                        a = true;
+                    elseif models.GetModelName(T:GetModel()) == "models/player/sniper.mdl" and p and not N:IsCritBoosted() then
+                        gui.SetValue("sniper: auto zoom", 1);
+                        gui.SetValue("sniper: zoomed only", 1);
+                        a = true;
+                    elseif T:InCond(67) or T:InCond(58) then
+                        gui.SetValue("sniper: auto zoom", 1);
+                        gui.SetValue("sniper: zoomed only", 1);
+                        a = true;          
+                    elseif N:IsCritBoosted() and T:GetHealth() <= 150 and Z == 77 or Z == 99 then
+                        if Z == 17 then
+                            gui.SetValue("sniper: auto zoom", 0);
+                            gui.SetValue("sniper: zoomed only", 0);
+                            a = false;
+                        elseif Z == 77 then
+                            gui.SetValue("sniper: auto zoom", 0);
+                            gui.SetValue("sniper: zoomed only", 0);
+                            a = false;
+                        elseif Z == 99 then
+                            gui.SetValue("sniper: auto zoom", 0);
+                            gui.SetValue("sniper: zoomed only", 0);
+                            a = false;
+                        elseif Z == 0 then
+                            gui.SetValue("sniper: auto zoom", 0);
+                            gui.SetValue("sniper: zoomed only", 0);
+                            a = false;    
+                        else    
+                            gui.SetValue("sniper: auto zoom", 1);
+                            gui.SetValue("sniper: zoomed only", 1);   
+                            a = false;
+                        end            
+                    else
+                        gui.SetValue("sniper: auto zoom", 1);
+                        gui.SetValue("sniper: zoomed only", 1); 
+                        a = false;                
+                    end    
+                else
+                    gui.SetValue("sniper: auto zoom", 1);
+                    gui.SetValue("sniper: zoomed only", 1);
+                    a = true;
+                end
+                
+                b = T;
+                i = 0;
+
+                f = b:GetAbsOrigin().x
+                g = b:GetAbsOrigin().y
+            end
+        end
+        ::U::
+    end
+
+    if a == true then
+
+        print(b:GetName())
+        print(a)
+        print("\n\n\n\n\n\n\n\n\n\n\n")
+
+        if N == nil or not N:IsAlive() then
+            a = false;
+            i = 0;
+            return;
+        end
+
+        if b == nil then
+            error("\n\n\n\n\n\n\n\n\n\n\nthis will never get hit\n\n\n\n\n\n\n\n\n\n\n")
+            a = false;
+            i = 0;
+            return;
+        end
+
+        if b:IsDormant() then
+            a = false;
+            i = 0;
+            return;
+        end
+
+        if not b:IsAlive() then
+            a = false;
+            return;
+        end
+
+        if r(Q, R, f, g) > l then
+            a = false;
+            i = 0;
+            return;
+        end
+
+        if playerlist.GetPriority(b) == q then
+            a = false;
+            i = 0;
+            return;
+        end
+
+        f = b:GetAbsOrigin().x
+        g = b:GetAbsOrigin().y
+    end
+end
+
+local function B(cmd)
+    local N = entities.GetLocalPlayer();
+
+    if (N == nil or not N:IsAlive()) then
+        return;
+    end
+
+    if not N:InCond(TFCond_Zoomed) then
+        i = 0
+    end 
+
+    if a == true or k == true then
+        if not N:InCond(TFCond_Zoomed) then 
+            gui.SetValue("aim other buildings", 0); 
+            cmd.buttons = cmd.buttons | IN_ATTACK2 
+        end
+    elseif a == false or k == false then
+        if h == false or k == false then
+            if (N == nil or not N:IsAlive()) then
+                return
+            elseif (N:InCond(TFCond_FocusBuff)) and m then
+                return
+            elseif (N:InCond(TFCond_Zoomed)) then
+                cmd.buttons = cmd.buttons | IN_ATTACK2
+                h = true
+            end
+        end
+    end
+
+    if h == true then
+        i = i + 1;
+        if i == j then 
+            i = 0;
+            if not a then
+                gui.SetValue("aim other buildings", 1); 
+            end     
+            h = false;
+            j = 200
+        end
+    end
+
+end
+
+local function C(event)
+    if event:GetName() == "game_newmap" then
+        a = false;
+        f = nil
+        g = nil
+        b = nil;
+    end
+end
+
+local function D(event)
+    if event:GetName() ~= "player_abandoned_match" then
+        return;
+    end
+
+    local N = entities.GetLocalPlayer()
+    local O = entities.FindByClass("CTFPlayer")
+    local N = entities.GetLocalPlayer()
+    local O = entities.FindByClass("CTFPlayer")
+    local C = entities.FindByClass("obj_sentrygun")
+    local Y = N:GetPropEntity("m_hActiveWeapon")
+    local Z = N:GetEntityForLoadoutSlot(0)
+    local W = Z:GetWeaponID()
+
+    if N == nil then
+        return;
+    end
+
+    local P = N:GetAbsOrigin();
+    local Q = P.x
+    local R = P.y
+
+    for S, T in pairs(O
