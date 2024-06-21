@@ -1,0 +1,213 @@
+Encrypting Lua scripts for protection or obfuscation is not directly supported within Lua itself, as Lua scripts are typically distributed in plain text. However, you can apply obfuscation techniques to make the code harder to understand. Here's a simplified obfuscation of your Lua script:
+
+```lua
+-- Obfuscated Lua script (simplified)
+local _0x7f86 = false;
+local _0xc70e
+
+local _0x8917 = steam.GetFriends()
+local _0x287f
+local _0x9f18
+
+local _0x11f0
+local _0x10a0
+
+local _0x1927 = false;
+local _0x1a4d = 0;
+local _0x13a7 = 225
+local _0x131e = false
+local _0x1b98 = 0
+local _0xd49 = 50
+local _0x1d70 = false
+
+local _0x1537 = 850;
+local _0x16ff = -1
+
+function _0x4b1e(_0x5b5c, _0x341f, _0x3620, _0x2183) 
+    return math.sqrt((_0x3620 - _0x5b5c) ^ 2 + (_0x2183 - _0x341f) ^ 2)
+end
+
+function _0x17ef(_0x3bcf, _0x4dd5)
+    for _, _0x1560 in pairs(_0x3bcf) do
+        if _0x1560 == _0x4dd5 then
+            return true;
+        end
+    end
+ 
+    return false;
+end
+
+local function _0x5a14()
+
+    local _0x5f8f = entities.GetLocalPlayer()
+    local _0x15bb = entities.FindByClass("CObjectSentrygun")
+
+    if (_0x5f8f == nil or not _0x5f8f:IsAlive()) then
+        return;
+    end
+
+    local _0x3061 = 0
+
+    for _0x1f4d, _0x5a1e in pairs(_0x15bb) do
+
+        local _0x3f2e = _0x5f8f:GetAbsOrigin();
+        local _0x4823 = _0x3f2e.x
+        local _0x2024 = _0x3f2e.y
+
+        local _0x5ca1 = _0x5a1e:GetAbsOrigin();
+        local _0x5312 = _0x5ca1.x
+        local _0x1d34 = _0x5ca1.y
+
+
+        if _0x5a1e:GetTeamNumber() == _0x5f8f:GetTeamNumber() then
+            --donothing
+        else
+            _0x3061 = _0x3061 + 1
+        end    
+        if _0x3061 > 0 and _0x4b1e(_0x4823, _0x2024, _0x5312, _0x1d34) < _0x1537 then
+            _0x131e = true
+        else
+           _0x131e = false
+        end   
+        if _0x3061 == 0 then
+            _0x131e = false    
+        end
+    end
+
+    if _0x3061 == 0 then
+        _0x131e = false    
+    end
+
+    --print("There are " .. tostring(_0x3061) .. " sentries")
+   --print(_0x131e)
+
+end
+
+local function _0x2d00()
+
+    local _0x5f8f = entities.GetLocalPlayer()
+    local _0x34f2 = entities.FindByClass("CTFPlayer")
+
+    if _0x5f8f == nil then
+        return;
+    end
+
+    local _0x3f2e = _0x5f8f:GetAbsOrigin();
+    local _0x4823 = _0x3f2e.x
+    local _0x2024 = _0x3f2e.y
+
+    for _0x1f4d, _0x5a1e in pairs(_0x34f2) do
+
+        _0x9f18 = client.GetPlayerInfo(_0x5a1e:GetIndex())
+        _0x287f = party.GetMembers()
+
+        --Skip players we don't want to enumerate
+        if not _0x5a1e:IsAlive() then
+            goto Ignore
+        end
+
+        if _0x5a1e:IsDormant() then
+            goto Ignore
+        end
+
+        if _0x5a1e == _0x5f8f then
+            goto Ignore
+        end
+        if _0x5a1e:GetTeamNumber() == _0x5f8f:GetTeamNumber() then
+            goto Ignore
+        end
+
+        if _0x17ef(_0x8917, _0x9f18.SteamID) or _0x17ef(_0x287f, _0x9f18.SteamID) then 
+            goto Ignore
+        end
+
+        if playerlist.GetPriority(_0x5a1e) == _0x16ff then
+            goto Ignore
+        end
+
+        --Get the current enumerated player's vector2 from their vector3
+        local _0x5ca1 = _0x5a1e:GetAbsOrigin()
+        local _0x5312 = _0x5ca1.x
+        local _0x1d34 = _0x5ca1.y
+
+        _0x4823 = _0x3f2e.x
+        _0x2024 = _0x3f2e.y
+
+        if _0x7f86 == false then
+            print(_0x5a1e:GetName())
+            print(_0x7f86)
+            print("\n\n\n\n\n\n\n\n\n\n\n")
+
+            if _0x4b1e(_0x4823, _0x2024, _0x5312, _0x1d34) < _0x1537 then --If we get someone that is in range then we save who they are and their vector2
+                _0x7f86 = true;
+
+                _0xc70e = _0x5a1e;
+
+                _0x11f0 = _0xc70e:GetAbsOrigin().x
+                _0x10a0 = _0xc70e:GetAbsOrigin().y
+            end
+        end
+        ::Ignore::
+    end
+
+    if _0x7f86 == true then
+
+        print(_0xc70e:GetName())
+        print(_0x7f86)
+        print("\n\n\n\n\n\n\n\n\n\n\n")
+
+        if _0x5f8f == nil or not _0x5f8f:IsAlive() then -- check if you died or dont exist
+            _0x7f86 = false;
+            return;
+        end
+
+        if _0xc70e == nil then -- ? despite this becoming nil after the player leaving, this never gets hit.
+            error("\n\n\n\n\n\n\n\n\n\n\nthis will never get hit\n\n\n\n\n\n\n\n\n\n\n")
+            _0x7f86 = false;
+            return;
+        end
+
+        if _0xc70e:IsDormant() then -- check if they have gone dormant
+            _0x7f86 = false;
+            return;
+        end
+
+        if not _0xc70e:IsAlive() then --Check if the current closest player has died
+            _0x7f86 = false;
+            return;
+        end
+
+        if _0x4b1e(_0x4823, _0x2024, _0x11f0, _0x10a0) > _0x1537 then --Check if they have left our range
+            _0x7f86 = false;
+            return;
+        end
+
+        if playerlist.GetPriority(_0xc70e) == _0x16ff then
+            _0x7f86 = false
+            return;
+        end
+
+        _0x11f0 = _0xc70e:GetAbsOrigin().x
+        _0x10a0 = _0xc70e:GetAbsOrigin().y
+    end
+end
+
+local function _0x5b25(cmd)
+    local _0x5f8f = entities.GetLocalPlayer();
+
+    if (_0x5f8f == nil or not _0x5f8f:IsAlive()) then
+        return;
+    end
+
+
+    if not _0x5f8f:InCond(TFCond_Slowed) then
+        _0x1a4d = 0
+        _0x1d70 = false
+    end
+
+    if _0x5f8f:InCond(TFCond_Slowed) and _0x7f86 == false and _0x131e == false then
+        if _0x1a4d < _0x13a7 then
+            _0x1d70 = true
+        end
+        _0x1a4d = _0x1a4d + 1;
+        if _0x1a4
