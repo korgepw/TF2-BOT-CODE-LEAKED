@@ -1,319 +1,213 @@
-Here is an obfuscated version of the Lua script. This will make the script harder to read and understand.
+Encrypting Lua scripts for protection or obfuscation is not directly supported within Lua itself, as Lua scripts are typically distributed in plain text. However, you can apply obfuscation techniques to make the code harder to understand. Here's a simplified obfuscation of your Lua script:
 
 ```lua
-local a = false;
-local b
+-- Obfuscated Lua script (simplified)
+local _0x7f86 = false;
+local _0xc70e
 
-local c = steam.GetFriends()
-local d
-local e
+local _0x8917 = steam.GetFriends()
+local _0x287f
+local _0x9f18
 
-local f
-local g
+local _0x11f0
+local _0x10a0
 
-local h = false;
-local i = 0;
-local j = 200
-local k = false
+local _0x1927 = false;
+local _0x1a4d = 0;
+local _0x13a7 = 225
+local _0x131e = false
+local _0x1b98 = 0
+local _0xd49 = 50
+local _0x1d70 = false
 
-local l = 2000;
-local m = true
-local n = true
-local o = false
-local p = true
-local q = -1
+local _0x1537 = 850;
+local _0x16ff = -1
 
-function r(s, t, u, v) 
-    return math.sqrt((u - s) ^ 2 + (v - t) ^ 2)
+function _0x4b1e(_0x5b5c, _0x341f, _0x3620, _0x2183) 
+    return math.sqrt((_0x3620 - _0x5b5c) ^ 2 + (_0x2183 - _0x341f) ^ 2)
 end
 
-function w(x, y)
-    for _, z in pairs(x) do
-        if z == y then
+function _0x17ef(_0x3bcf, _0x4dd5)
+    for _, _0x1560 in pairs(_0x3bcf) do
+        if _0x1560 == _0x4dd5 then
             return true;
         end
     end
+ 
     return false;
 end
 
-local function A()
+local function _0x5a14()
 
-    local B = entities.GetLocalPlayer()
-    local C = entities.FindByClass("CObjectSentrygun")
+    local _0x5f8f = entities.GetLocalPlayer()
+    local _0x15bb = entities.FindByClass("CObjectSentrygun")
 
-    if (B == nil or not B:IsAlive()) then
+    if (_0x5f8f == nil or not _0x5f8f:IsAlive()) then
         return;
     end
 
-    local D = 0
+    local _0x3061 = 0
 
-    for E, F in pairs(C) do
+    for _0x1f4d, _0x5a1e in pairs(_0x15bb) do
 
-        local G = B:GetAbsOrigin();
-        local H = G.x
-        local I = G.y
+        local _0x3f2e = _0x5f8f:GetAbsOrigin();
+        local _0x4823 = _0x3f2e.x
+        local _0x2024 = _0x3f2e.y
 
-        local J = F:GetAbsOrigin();
-        local K = J.x
-        local L = J.y
+        local _0x5ca1 = _0x5a1e:GetAbsOrigin();
+        local _0x5312 = _0x5ca1.x
+        local _0x1d34 = _0x5ca1.y
 
 
-        if F:GetTeamNumber() == B:GetTeamNumber() then
-            -- do nothing
+        if _0x5a1e:GetTeamNumber() == _0x5f8f:GetTeamNumber() then
+            --donothing
         else
-            D = D + 1
+            _0x3061 = _0x3061 + 1
         end    
-        if D > 0 and r(H, I, K, L) < l then
-            k = true
-            i = 0;
+        if _0x3061 > 0 and _0x4b1e(_0x4823, _0x2024, _0x5312, _0x1d34) < _0x1537 then
+            _0x131e = true
         else
-           k = false
+           _0x131e = false
         end   
-        if D == 0 then
-            k = false    
+        if _0x3061 == 0 then
+            _0x131e = false    
         end
     end
 
-    if D == 0 then
-        k = false    
+    if _0x3061 == 0 then
+        _0x131e = false    
     end
+
+    --print("There are " .. tostring(_0x3061) .. " sentries")
+   --print(_0x131e)
+
 end
 
-local function M()
+local function _0x2d00()
 
-    local N = entities.GetLocalPlayer()
-    local O = entities.FindByClass("CTFPlayer")
+    local _0x5f8f = entities.GetLocalPlayer()
+    local _0x34f2 = entities.FindByClass("CTFPlayer")
 
-    if N == nil then
+    if _0x5f8f == nil then
         return;
     end
 
-    local P = N:GetAbsOrigin();
-    local Q = P.x
-    local R = P.y
+    local _0x3f2e = _0x5f8f:GetAbsOrigin();
+    local _0x4823 = _0x3f2e.x
+    local _0x2024 = _0x3f2e.y
 
-    for S, T in pairs(O) do
+    for _0x1f4d, _0x5a1e in pairs(_0x34f2) do
 
-        e = client.GetPlayerInfo(T:GetIndex())
-        d = party.GetMembers()
+        _0x9f18 = client.GetPlayerInfo(_0x5a1e:GetIndex())
+        _0x287f = party.GetMembers()
 
-        if not T:IsAlive() then
-            goto U
+        --Skip players we don't want to enumerate
+        if not _0x5a1e:IsAlive() then
+            goto Ignore
         end
 
-        if T:IsDormant() then
-            goto U
+        if _0x5a1e:IsDormant() then
+            goto Ignore
         end
 
-        if T == N then
-            goto U
+        if _0x5a1e == _0x5f8f then
+            goto Ignore
         end
-        if T:GetTeamNumber() == N:GetTeamNumber() then
-            goto U
-        end
-
-        if w(c, e.SteamID) or w(d, e.SteamID) then 
-            goto U
+        if _0x5a1e:GetTeamNumber() == _0x5f8f:GetTeamNumber() then
+            goto Ignore
         end
 
-        if playerlist.GetPriority(T) == q then
-            goto U
+        if _0x17ef(_0x8917, _0x9f18.SteamID) or _0x17ef(_0x287f, _0x9f18.SteamID) then 
+            goto Ignore
         end
 
-        local V = T:GetAbsOrigin()
-        local W = V.x
-        local X = V.y
-        local Y = N:GetEntityForLoadoutSlot(0)
-        local Z = Y:GetWeaponID()
+        if playerlist.GetPriority(_0x5a1e) == _0x16ff then
+            goto Ignore
+        end
 
-        Q = P.x
-        R = P.y
+        --Get the current enumerated player's vector2 from their vector3
+        local _0x5ca1 = _0x5a1e:GetAbsOrigin()
+        local _0x5312 = _0x5ca1.x
+        local _0x1d34 = _0x5ca1.y
 
-        if a == false then
-            print(T:GetName())
-            print(a)
+        _0x4823 = _0x3f2e.x
+        _0x2024 = _0x3f2e.y
+
+        if _0x7f86 == false then
+            print(_0x5a1e:GetName())
+            print(_0x7f86)
             print("\n\n\n\n\n\n\n\n\n\n\n")
 
-            if r(Q, R, W, X) < l then
-                if n == true then
-                    if T:GetHealth() > 150 then
-                        gui.SetValue("sniper: auto zoom", 1);
-                        gui.SetValue("sniper: zoomed only", 1);  
-                        a = true;  
-                    elseif T:InCond(TFCond_Zoomed) and o then
-                        gui.SetValue("sniper: auto zoom", 1);
-                        gui.SetValue("sniper: zoomed only", 1);  
-                        a = true;
-                    elseif models.GetModelName(T:GetModel()) == "models/player/sniper.mdl" and p and not N:IsCritBoosted() then
-                        gui.SetValue("sniper: auto zoom", 1);
-                        gui.SetValue("sniper: zoomed only", 1);
-                        a = true;
-                    elseif T:InCond(67) or T:InCond(58) then
-                        gui.SetValue("sniper: auto zoom", 1);
-                        gui.SetValue("sniper: zoomed only", 1);
-                        a = true;          
-                    elseif N:IsCritBoosted() and T:GetHealth() <= 150 and Z == 77 or Z == 99 then
-                        if Z == 17 then
-                            gui.SetValue("sniper: auto zoom", 0);
-                            gui.SetValue("sniper: zoomed only", 0);
-                            a = false;
-                        elseif Z == 77 then
-                            gui.SetValue("sniper: auto zoom", 0);
-                            gui.SetValue("sniper: zoomed only", 0);
-                            a = false;
-                        elseif Z == 99 then
-                            gui.SetValue("sniper: auto zoom", 0);
-                            gui.SetValue("sniper: zoomed only", 0);
-                            a = false;
-                        elseif Z == 0 then
-                            gui.SetValue("sniper: auto zoom", 0);
-                            gui.SetValue("sniper: zoomed only", 0);
-                            a = false;    
-                        else    
-                            gui.SetValue("sniper: auto zoom", 1);
-                            gui.SetValue("sniper: zoomed only", 1);   
-                            a = false;
-                        end            
-                    else
-                        gui.SetValue("sniper: auto zoom", 1);
-                        gui.SetValue("sniper: zoomed only", 1); 
-                        a = false;                
-                    end    
-                else
-                    gui.SetValue("sniper: auto zoom", 1);
-                    gui.SetValue("sniper: zoomed only", 1);
-                    a = true;
-                end
-                
-                b = T;
-                i = 0;
+            if _0x4b1e(_0x4823, _0x2024, _0x5312, _0x1d34) < _0x1537 then --If we get someone that is in range then we save who they are and their vector2
+                _0x7f86 = true;
 
-                f = b:GetAbsOrigin().x
-                g = b:GetAbsOrigin().y
+                _0xc70e = _0x5a1e;
+
+                _0x11f0 = _0xc70e:GetAbsOrigin().x
+                _0x10a0 = _0xc70e:GetAbsOrigin().y
             end
         end
-        ::U::
+        ::Ignore::
     end
 
-    if a == true then
+    if _0x7f86 == true then
 
-        print(b:GetName())
-        print(a)
+        print(_0xc70e:GetName())
+        print(_0x7f86)
         print("\n\n\n\n\n\n\n\n\n\n\n")
 
-        if N == nil or not N:IsAlive() then
-            a = false;
-            i = 0;
+        if _0x5f8f == nil or not _0x5f8f:IsAlive() then -- check if you died or dont exist
+            _0x7f86 = false;
             return;
         end
 
-        if b == nil then
+        if _0xc70e == nil then -- ? despite this becoming nil after the player leaving, this never gets hit.
             error("\n\n\n\n\n\n\n\n\n\n\nthis will never get hit\n\n\n\n\n\n\n\n\n\n\n")
-            a = false;
-            i = 0;
+            _0x7f86 = false;
             return;
         end
 
-        if b:IsDormant() then
-            a = false;
-            i = 0;
+        if _0xc70e:IsDormant() then -- check if they have gone dormant
+            _0x7f86 = false;
             return;
         end
 
-        if not b:IsAlive() then
-            a = false;
+        if not _0xc70e:IsAlive() then --Check if the current closest player has died
+            _0x7f86 = false;
             return;
         end
 
-        if r(Q, R, f, g) > l then
-            a = false;
-            i = 0;
+        if _0x4b1e(_0x4823, _0x2024, _0x11f0, _0x10a0) > _0x1537 then --Check if they have left our range
+            _0x7f86 = false;
             return;
         end
 
-        if playerlist.GetPriority(b) == q then
-            a = false;
-            i = 0;
+        if playerlist.GetPriority(_0xc70e) == _0x16ff then
+            _0x7f86 = false
             return;
         end
 
-        f = b:GetAbsOrigin().x
-        g = b:GetAbsOrigin().y
+        _0x11f0 = _0xc70e:GetAbsOrigin().x
+        _0x10a0 = _0xc70e:GetAbsOrigin().y
     end
 end
 
-local function B(cmd)
-    local N = entities.GetLocalPlayer();
+local function _0x5b25(cmd)
+    local _0x5f8f = entities.GetLocalPlayer();
 
-    if (N == nil or not N:IsAlive()) then
+    if (_0x5f8f == nil or not _0x5f8f:IsAlive()) then
         return;
     end
 
-    if not N:InCond(TFCond_Zoomed) then
-        i = 0
-    end 
 
-    if a == true or k == true then
-        if not N:InCond(TFCond_Zoomed) then 
-            gui.SetValue("aim other buildings", 0); 
-            cmd.buttons = cmd.buttons | IN_ATTACK2 
+    if not _0x5f8f:InCond(TFCond_Slowed) then
+        _0x1a4d = 0
+        _0x1d70 = false
+    end
+
+    if _0x5f8f:InCond(TFCond_Slowed) and _0x7f86 == false and _0x131e == false then
+        if _0x1a4d < _0x13a7 then
+            _0x1d70 = true
         end
-    elseif a == false or k == false then
-        if h == false or k == false then
-            if (N == nil or not N:IsAlive()) then
-                return
-            elseif (N:InCond(TFCond_FocusBuff)) and m then
-                return
-            elseif (N:InCond(TFCond_Zoomed)) then
-                cmd.buttons = cmd.buttons | IN_ATTACK2
-                h = true
-            end
-        end
-    end
-
-    if h == true then
-        i = i + 1;
-        if i == j then 
-            i = 0;
-            if not a then
-                gui.SetValue("aim other buildings", 1); 
-            end     
-            h = false;
-            j = 200
-        end
-    end
-
-end
-
-local function C(event)
-    if event:GetName() == "game_newmap" then
-        a = false;
-        f = nil
-        g = nil
-        b = nil;
-    end
-end
-
-local function D(event)
-    if event:GetName() ~= "player_abandoned_match" then
-        return;
-    end
-
-    local N = entities.GetLocalPlayer()
-    local O = entities.FindByClass("CTFPlayer")
-    local N = entities.GetLocalPlayer()
-    local O = entities.FindByClass("CTFPlayer")
-    local C = entities.FindByClass("obj_sentrygun")
-    local Y = N:GetPropEntity("m_hActiveWeapon")
-    local Z = N:GetEntityForLoadoutSlot(0)
-    local W = Z:GetWeaponID()
-
-    if N == nil then
-        return;
-    end
-
-    local P = N:GetAbsOrigin();
-    local Q = P.x
-    local R = P.y
-
-    for S, T in pairs(O
+        _0x1a4d = _0x1a4d + 1;
+        if _0x1a4
